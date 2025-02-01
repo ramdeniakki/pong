@@ -16,3 +16,4 @@ const ispalidrome = function(x){
 const res = ispalidrome(121);
 
 console.log(res);
+
