@@ -23,27 +23,6 @@ console.log(res); // Output: true
 
 ---
 
-## Explanation
-1. **Convert `x` to a string:** `x.toString()`  
-   - Example: `121` -> `"121"`, `10` -> `"10"`
-
-2. **Split the string into an array of characters:** `.split("")`  
-   - Example: `"121"` -> `["1", "2", "1"]`, `"10"` -> `["1", "0"]`
-
-3. **Reverse the array:** `.reverse()`  
-   - Example: `["1", "2", "1"]` -> `["1", "2", "1"]`, `["1", "0"]` -> `["0", "1"]`
-
-4. **Join the reversed array back into a string:** `.join("")`  
-   - Example: `["1", "2", "1"]` -> `"121"`, `["0", "1"]` -> `"01"`
-
-5. **Convert the reversed string back into a number using the unary plus operator (`+`)**  
-   - Example: `+"121"` -> `121`, `+"01"` -> `1`
-
-6. **Compare the original number (`x`) with the reversed number:**  
-   - If they are equal, return `true` (it is a palindrome), otherwise return `false`.
-
----
-
 ## Fibonacci Series
 ### Definition
 The Fibonacci series is a sequence of numbers where each number is the sum of the two preceding ones:
@@ -88,3 +67,53 @@ const fib = function(n) {
 ```
 
 ---
+
+## Question 3 - Valid Anagram
+An anagram is a word or phrase formed by rearranging the letters of a different word or phrase using all the original letters exactly once.
+
+### Examples
+**Input:** (S = "anagram", T = "nagram")  
+**Output:** true  
+
+**Input:** (S = "rat", T = "car")  
+**Output:** false  
+
+---
+
+## Solution
+### Approach 1: Sorting Method
+```javascript
+const anagram = function(s, t) {
+    s = s.split("").sort().join("");
+    t = t.split("").sort().join("");
+    return s === t;
+};
+
+const ans = anagram("anagram", "nagram");
+console.log(ans); // Output: true
+```
+
+### Approach 2: Frequency Counter Method
+```javascript
+const isAnagram = function(s, t) {
+    if (s.length !== t.length) return false;
+
+    let obj1 = {};
+    let obj2 = {};
+
+    for (let i = 0; i < s.length; i++) {
+        obj1[s[i]] = (obj1[s[i]] || 0) + 1;
+        obj2[t[i]] = (obj2[t[i]] || 0) + 1;
+    }
+
+    for (const key in obj1) {
+        if (obj1[key] !== obj2[key]) {
+            return false;
+        }
+    }
+    return true;
+};
+```
+
+---
+
